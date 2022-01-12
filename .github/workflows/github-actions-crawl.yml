@@ -1,0 +1,29 @@
+name: 대한민국 행정동 데이터 수집
+on: [push]
+  # schedule:
+  #   - crone: '0 0 * * *' # 매일 0시 0분에 실행
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Run Cralwer
+      run: go run ./cmd/main.go
+      
+    - name: result data copy to submodule
+      run: cp administrationCode.tsv ./administrationCode/
+    - name: push submodule
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ screts.GITHUB_TOKEN }}
+        external_repository: kr-juso/administrationCode
+        publish_branch: master
+        publish_dir: ./administrationCode
