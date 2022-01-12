@@ -21,9 +21,19 @@ jobs:
     - name: result data copy to submodule
       run: cp administrationCode.tsv ./administrationCode/
       
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+         key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+         name: id_rsa # optional
+         # known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      
     - name: push submodule
       run: |
+        echo "${{}}" >> /root/.ssh/id_rsa
         cd administrationCode
+        git config --global user.email kyc1682@gmail.com"
+        git config --global user.name "YeongCheon Kim"
         git add administrationCode.tsv
         git commit -m "update data"
         git push
