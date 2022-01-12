@@ -27,17 +27,16 @@ jobs:
         path: path
         ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         persist-credentials: true
-
-    - name: checkout submodule
-      run: |
-        git submodule init
-        git submodule update
       
     - name: result data copy to submodule
       run: cp administrationCode.tsv ./administrationCode/
       
     - name: push submodule
+    - uses: actions/checkout@v2
+      with:
+        ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
       run: |
         cd administrationCode
+        git add administrationCode.tsv
         git commit -m "update data"
         git push
