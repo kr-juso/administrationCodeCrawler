@@ -26,6 +26,7 @@ jobs:
       with:
          key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
          name: id_rsa # optional
+         known_hosts: ${{ secrets.KNOWN_HOSTS }}
       
     - name: push submodule
       run: |
