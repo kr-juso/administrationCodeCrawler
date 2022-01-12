@@ -10,7 +10,7 @@ jobs:
       with:
         submodules: recursive
         ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        persist-credentials: true
+        fetch-depth: 0
 
     - name: Set up Go
       uses: actions/setup-go@v2
