@@ -19,14 +19,6 @@ jobs:
 
     - name: Run Cralwer
       run: go run ./cmd/main.go
-
-    - name: clone submodule
-      uses: actions/checkout@v2
-      with:
-        repository: kr-juso/administrationCode
-        path: path
-        ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        persist-credentials: true
       
     - name: result data copy to submodule
       run: cp administrationCode.tsv ./administrationCode/
