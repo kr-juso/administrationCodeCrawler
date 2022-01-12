@@ -17,13 +17,25 @@ jobs:
 
     - name: Run Cralwer
       run: go run ./cmd/main.go
+
+    - name: clone submodule
+      uses: actions/checkout@v2
+      with:
+        repository: kr-juso/administrationCode
+        path: path
+        ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        persist-credentials: true
+
+    - name: checkout submodule
+      run: |
+        git submodule init
+        git submodule update
       
     - name: result data copy to submodule
       run: cp administrationCode.tsv ./administrationCode/
+      
     - name: push submodule
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        external_repository: kr-juso/administrationCode
-        publish_branch: master
-        publish_dir: ./administrationCode
+      run: |
+        cd administrationCode
+        git commit -m "update data"
+        git push
