@@ -31,7 +31,7 @@ jobs:
     - name: push submodule
       run: |
         cd administrationCode
-        git config --global user.email kyc1682@gmail.com"
+        git config --global user.email "kyc1682@gmail.com"
         git config --global user.name "YeongCheon Kim"
         git add administrationCode.tsv
         git commit -m "update data"
