@@ -32,9 +32,6 @@ jobs:
       run: cp administrationCode.tsv ./administrationCode/
       
     - name: push submodule
-      uses: actions/checkout@v2
-      with:
-        ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
       run: |
         cd administrationCode
         git add administrationCode.tsv
