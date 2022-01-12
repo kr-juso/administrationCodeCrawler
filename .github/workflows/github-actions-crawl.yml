@@ -35,4 +35,4 @@ jobs:
         git config --global user.name "YeongCheon Kim"
         git add administrationCode.tsv
         git commit -m "update data"
-        git push
+        git push origin HEAD:main
