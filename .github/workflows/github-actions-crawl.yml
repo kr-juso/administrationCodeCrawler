@@ -23,7 +23,7 @@ jobs:
     - name: push submodule
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ screts.GITHUB_TOKEN }}
+        deploy_key: ${{ screts.ACTIONS_DEPLOY }}
         external_repository: kr-juso/administrationCode
         publish_branch: master
         publish_dir: ./administrationCode
