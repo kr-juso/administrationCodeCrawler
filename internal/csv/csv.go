@@ -8,7 +8,7 @@ import (
 )
 
 func SaveCsv(items []model.AdministrationCode) {
-	f, err := os.Create("./result.csv")
+	f, err := os.Create("./administrationCode.tsv")
 	if err != nil {
 		panic(err)
 	}
