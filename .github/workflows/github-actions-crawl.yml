@@ -23,7 +23,7 @@ jobs:
     - name: push submodule
       uses: peaceiris/actions-gh-pages@v3
       with:
-        deploy_key: ${{ screts.ACTIONS_DEPLOY }}
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         external_repository: kr-juso/administrationCode
         publish_branch: master
         publish_dir: ./administrationCode
