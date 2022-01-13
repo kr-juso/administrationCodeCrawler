@@ -30,7 +30,16 @@ jobs:
 
     - name: Adding Known Hosts
       run: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-      
+
+    - name: Install SSH KEY02
+      env:
+        SSH_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+      run: |
+        mkdir -p $HOME/.ssh
+        echo "$SSH_KEY" > $HOME/.ssh/ssh.key
+        chmod 600 $HOME/.ssh/ssh.key        
+        export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/ssh.key"
+
     - name: push submodule
       env:
         SSH_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
