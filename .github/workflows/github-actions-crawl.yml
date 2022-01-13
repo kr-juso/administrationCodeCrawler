@@ -20,6 +20,14 @@ jobs:
       
     - name: result data copy to submodule
       run: cp administrationCode.tsv ./administrationCode/
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        external_repository: kr-juso/administrationCode
+        publish_branch: main
+        publish_dir: ./administrationCode
       
     - name: Install SSH key
       uses: shimataro/ssh-key-action@v2
