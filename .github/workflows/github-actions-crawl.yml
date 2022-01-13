@@ -1,7 +1,7 @@
 name: 대한민국 행정동 데이터 수집
-on: [push]
-  # schedule:
-  #   - crone: '0 0 * * *' # 매일 0시 0분에 실행
+on:
+  schedule:
+    - cron: '0 0 * * *' # 매일 0시 0분에 실행
 jobs:
   crawl:
     runs-on: ubuntu-latest
