@@ -43,10 +43,13 @@ func getDetailLink() string {
 	querySelector := ".table_wrap .table_style1 tr td a"
 
 	path := ""
+	isFirst := false
+
 	doc.Find(querySelector).Each(func(i int, s *goquery.Selection) {
-		isOk := strings.HasPrefix(s.Text(), "주민등록업무 행정기관 및 관할구역 변경내역")
-		if i == 0 && isOk { // 가장 최근 변경내역 페이지만 추출
+		isContain := strings.HasPrefix(s.Text(), "주민등록업무 행정기관 및 관할구역 변경내역")
+		if !isFirst && isContain { // 가장 최근 변경내역 페이지만 추출
 			path, _ = s.Attr("href")
+			isFirst = true
 		}
 	})
 
