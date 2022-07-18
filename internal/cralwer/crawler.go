@@ -46,7 +46,7 @@ func getDetailLink() string {
 	isFirst := false
 
 	doc.Find(querySelector).Each(func(i int, s *goquery.Selection) {
-		isContain := strings.HasPrefix(s.Text(), "주민등록업무 행정기관 및 관할구역 변경내역")
+		isContain := strings.HasPrefix(s.Text(), "주민등록업무")
 		if !isFirst && isContain { // 가장 최근 변경내역 페이지만 추출
 			path, _ = s.Attr("href")
 			isFirst = true
@@ -125,7 +125,7 @@ func extractFile(zipBytes []byte, fileName string) []byte {
 	}
 
 	for _, f := range r.File {
-		if f.Name == fileName {
+		if strings.HasSuffix(f.Name, fileName) {
 			fileReader, err := f.Open()
 			if err != nil {
 				panic(err)
